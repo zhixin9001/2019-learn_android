@@ -41,14 +41,48 @@ protected void onCreate(Bundle savedInstanceState) {
 	}
 }
 ```
-这段代码的作用是：在资源ID为R.id.fragment_container的FrameLayout容器中，找到fragment，然后判断获取的fragment是否为空，如果为空则创建新的名为CrimeFragment的Fragment实例，将其添加到FragmentManager所维护的队列中。
+###### FragmentManager
+这段代码的作用是：在资源ID为R.id.fragment_container的FrameLayout容器中，找到fragment，然后判断获取的fragment是否为空，如果为空则创建新的名为CrimeFragment的Fragment实例，将其添加到FragmentManager所维护的队列中,并在容器R.id.fragment_container中显示。
+除了这种用代码将fragment交给Activity托管的方式，还可以在xml中直接将fragment签入activity，但为了能够动态地更换fragment，唯一能采用的便是前面采用的代码的方式。
+在设备旋转或回收内存时，Android系统会销毁Activity，但FragmentManager会将fragment队列保存下来。Activity被重建时，新的FragmentManager会首先获取保存的队列（这就是使用了Fragment后，不会有像之前那样旋转就会设备导致状态丢失的现象的原因）。所以代码里会先判断fragment是否为null，只有为null的时候才会重新向队列中添加fragment。
+
+##### Fragment的生命周期
+Fragment的生命周期如下图所示：
+【生命周期】
+可见Fragment的生命周期与Activity的生命周期非常类似，实际上Fragment的许多方法对应着activity的生命周期方法。
+*Fragment的onCreate方法：*
+```
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    ...
+}
+```
+*Activity的onCreate方法：*
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    ...
+}
+```
+两者的区别在于Fragment.OnCreate()是公共方法，而Activity.OnCreate()是受保护方法，Activity的生命周期方法由操作系统调用，而Fragment的生命周期方法则是由托管它的Activity调用的。
 
 
 
-  
-- 创建布局文件
-- 创建Fragment类
-- 向FragmentManager中添加Fragment
 
-生命周期
-具体托管实现
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

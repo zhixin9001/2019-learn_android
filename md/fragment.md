@@ -14,7 +14,37 @@
 
 #### 如何使用Fragment
 ##### 代码实现
-- 定义容器视图
+###### 容器视图和Activity
+在文件activity_fragment.xml中定义容器视图：(*向右滑动以查看完整内容*)
+```
+<FrameLayout android:id="@+id/fragment_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+在Activity中定义了一个用于放置Fragment的FrameLayout，这个容器视图可以托管任意的Fragment。
+*向右滑动以查看完整内容*
+对应Activity的代码在CrimeActivity.java为：(*向右滑动以查看完整内容*)
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_fragment);
+
+	FragmentManager fm = getSupportFragmentManager();
+	Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+	if (fragment == null) {
+		fragment = new CrimeFragment();
+		fm.beginTransaction()
+				.add(R.id.fragment_container, fragment)
+				.commit();
+	}
+}
+```
+这段代码的作用是：在资源ID为R.id.fragment_container的FrameLayout容器中，找到fragment，然后判断获取的fragment是否为空，如果为空则创建新的名为CrimeFragment的Fragment实例，将其添加到FragmentManager所维护的队列中。
+
+
+
   
 - 创建布局文件
 - 创建Fragment类

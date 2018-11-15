@@ -15,7 +15,7 @@
 #### 如何使用Fragment
 ##### 代码实现
 ###### 容器视图和Activity
-在文件activity_fragment.xml中定义容器视图：(*向右滑动以查看完整内容*)
+在文件activity_fragment.xml中定义容器视图：
 ```
 <FrameLayout android:id="@+id/fragment_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,8 +23,7 @@
     android:layout_height="match_parent" />
 ```
 在Activity中定义了一个用于放置Fragment的FrameLayout，这个容器视图可以托管任意的Fragment。
-*向右滑动以查看完整内容*
-对应Activity的代码在CrimeActivity.java为：(*向右滑动以查看完整内容*)
+对应Activity的代码在CrimeActivity.java为：
 ```
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ##### Fragment的生命周期
 Fragment的生命周期如下图所示：
-【生命周期】
+![Fragment的生命周期][base64str]
 可见Fragment的生命周期与Activity的生命周期非常类似，实际上Fragment的许多方法对应着activity的生命周期方法。
 *Fragment的onCreate方法：*
 ```
@@ -67,22 +66,4 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 两者的区别在于Fragment.OnCreate()是公共方法，而Activity.OnCreate()是受保护方法，Activity的生命周期方法由操作系统调用，而Fragment的生命周期方法则是由托管它的Activity调用的。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

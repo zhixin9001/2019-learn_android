@@ -22,6 +22,46 @@ import java.util.List;
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
+    private boolean mSubtitleVisible;
+
+     @Override
+    public View onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.fragment_crime_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.new_crime:
+                Crime crime=new Crime();
+                CrimeLab.get(getActivity()).addCrime(crime);
+                Intent intent=CrimePagerActivity.newIntent(getActivity(),crime.getId());
+                startActivity(intent);
+                return true;
+            case R.id.showsubtitle:
+                updateSubtitle();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateSubtitle(){
+        CrimeLab crimeLab=CrimeLab.get(getActivity());
+        int crimeCount=crimeLab.getCrimes().size();
+        String subtitle=getString(R.string.subtitle_format,crimeCount);
+
+        AppCompatActivity activity=(AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(subtitle);
+
+    }
 
     @Nullable
     @Override

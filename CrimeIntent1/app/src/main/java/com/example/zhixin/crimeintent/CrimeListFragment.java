@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,8 +28,8 @@ public class CrimeListFragment extends Fragment {
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE="subtitle";
 
-     @Override
-    public View onCreate(Bundle savedInstanceState){
+    @Override
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
@@ -53,7 +56,7 @@ public class CrimeListFragment extends Fragment {
                 Intent intent=CrimePagerActivity.newIntent(getActivity(),crime.getId());
                 startActivity(intent);
                 return true;
-            case R.id.showsubtitle:
+            case R.id.show_subtitle:
                 mSubtitleVisible=!mSubtitleVisible;
                 getActivity().invalidateOptionsMenu();
                 updateSubtitle();
@@ -154,8 +157,8 @@ public class CrimeListFragment extends Fragment {
     }
 
     @Override
-    public void onSavedInstanceState(bundle outState) {
-        super.onSavedInstanceState();
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putBoolean(SAVED_SUBTITLE_VISIBLE,mSubtitleVisible);
     }
 
@@ -171,5 +174,6 @@ public class CrimeListFragment extends Fragment {
 
         updateSubtitle();
     }
+
 }
 

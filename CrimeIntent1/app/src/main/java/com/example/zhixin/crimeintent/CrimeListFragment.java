@@ -61,6 +61,8 @@ public class CrimeListFragment extends Fragment {
                 getActivity().invalidateOptionsMenu();
                 updateSubtitle();
                 return true;
+            case R.id.delete_crime:
+
             default:
                 return super.onOptionsItemSelected(item);
         }

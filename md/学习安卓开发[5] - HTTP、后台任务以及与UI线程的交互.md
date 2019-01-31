@@ -9,7 +9,7 @@
     - 开始后台线程
     - 将结果返回给UI线程
 - HandlerThread
-    - 
+    - AsyncTask不适用于批量下载图片
 
 #### HTTP
 ##### 请求数据
@@ -47,6 +47,15 @@ public String getUrlString(String urlSpec) throws IOException {
 ```
 
 ##### 解析Json数据
+
+
+
+#### HandlerThread
+##### AsyncTask不适用于批量下载图片
+前面通过AsyncTask创建的后台线程获取到了所有图片的URL信息，接下来需要下载这些图片并显示到RecyclerView。但如果要在doInBackGround中直接下载这些图片则是不合理的，这是因为：
+- 图片下载比较耗时，如果要下载的图片较多，需要等这些图片都下载成功后才去更新UI，体验很差。
+- 下载的图片还涉及到保存的问题，数量较大的图片不宜直接存放在内存，而且如果要实现无限滚动来显示图片，内存很快就会耗尽
+所以对于类似这种重复且数量较大、耗时较长的任务来说，AsyncView便不再适合了。
 
 
 

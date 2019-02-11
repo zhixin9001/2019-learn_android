@@ -50,7 +50,7 @@ public class FlickrFetchr {
         return new String(getUrlBytes(urlSpec));
     }
 
-    public List<GalleryItem> fetchItems() {
+    public List<GalleryItem> downloadGalleryItems() {
         List<GalleryItem> items = new ArrayList<>();
         try {
             String url = "http://image.baidu.com/channel/listjson?pn=0&rn=25&tag1=明星&ie=utf8";

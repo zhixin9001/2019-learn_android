@@ -1,5 +1,6 @@
 package com.example.zhixin.photogallery;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,7 +24,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoGalleryFragment extends Fragment {
+public class PhotoGalleryFragment extends VisibleFragment {
 
     private static final String TAG = "PhotoGalleryFragment";
 
@@ -41,6 +42,10 @@ public class PhotoGalleryFragment extends Fragment {
         setRetainInstance(true);
         setHasOptionsMenu(true);
         updateItems();
+
+//        Intent i=PollService.newIntent(getActivity());
+//        getActivity().startService(i);
+        PollService.setServiceAlarm(getActivity(), true);
 
         Handler responseHandler = new Handler();
 
@@ -69,27 +74,52 @@ public class PhotoGalleryFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_photo_gallery,menu);
-        MenuItem searchitem=menu.findItem(R.id.menu_item_search);
-        final SearchView searchView=(SearchView)searchitem.getActionView();
+        inflater.inflate(R.menu.fragment_photo_gallery, menu);
+        MenuItem searchitem = menu.findItem(R.id.menu_item_search);
+        final SearchView searchView = (SearchView) searchitem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Log.d(TAG,"QueryText="+s);
+                Log.d(TAG, "QueryText=" + s);
+                QueryPreferences.setStoredQuery(getActivity(), s);
                 updateItems();
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Log.d(TAG,"QueryTextChange:"+s);
+                Log.d(TAG, "QueryTextChange:" + s);
                 return false;
             }
         });
+
+        MenuItem toogleItem=menu.findItem(R.id.menu_item_toggle_polling);
+        if(PollService.isServiceAlarmOn(getActivity())){
+            toogleItem.setTitle(R.string.stop_polling);
+        }else{
+            toogleItem.setTitle(R.string.start_polling);
+        }
     }
 
-    private void updateItems(){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_clear:
+                QueryPreferences.setStoredQuery(getActivity(), null);
+                updateItems();
+                return true;
+            case R.id.menu_item_toggle_polling:
+                boolean shouldStartAlarm = !PollService.isServiceAlarmOn(getActivity());
+                PollService.setServiceAlarm(getActivity(), shouldStartAlarm);
+                getActivity().invalidateOptionsMenu();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateItems() {
         new FetchItemsTask().execute();
     }
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--<GridLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:rowCount="1"-->
+    <!--android:columnCount="4"-->
+    <!--android:layout_gravity="center_horizontal">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tally_desc"-->
+    <!--android:text="Tally Desc"-->
+    <!--android:layout_gravity="fill_vertical"-->
+    <!--android:layout_columnWeight="2"-->
+    <!--android:background="@color/colorPrimaryDark"></TextView>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tally_amount"-->
+    <!--android:text="Tally Amount"-->
+    <!--android:layout_gravity="fill_horizontal"-->
+    <!--android:layout_columnWeight="1"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:textAlignment="textEnd"></TextView>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tally_category"-->
+    <!--android:layout_gravity="fill_horizontal"-->
+    <!--android:layout_columnWeight="1"-->
+    <!--android:text="Tally Category"-->
+    <!--android:textAlignment="center"></TextView>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tally_date"-->
+    <!--android:text="Tally date"-->
+    <!--android:layout_gravity="fill_horizontal"-->
+    <!--android:layout_columnWeight="1"-->
+    <!--android:textAlignment="textEnd"-->
+    <!--android:background="@color/colorAccent"></TextView>-->
+
+    <!--</GridLayout >-->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TableRow android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tally_desc"
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:text="Tally Desc"></TextView>
+
+            <TextView
+                android:id="@+id/tally_amount"
+                android:layout_width="70dp"
+                android:text="Tally Amount"
+                android:textAlignment="textEnd"></TextView>
+
+            <TextView
+                android:id="@+id/tally_category"
+                android:layout_width="60dp"
+                android:text="Tally Category"
+                android:textAlignment="center"></TextView>
+
+            <TextView
+                android:id="@+id/tally_date"
+                android:layout_width="80dp"
+                android:text="Tally date"
+                android:textAlignment="textEnd"></TextView>
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.39999998dip"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_purple"
+        android:paddingBottom="2dp" />
+</LinearLayout>

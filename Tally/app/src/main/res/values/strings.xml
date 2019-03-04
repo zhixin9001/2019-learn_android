@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">极简记账</string>
+    <string name="new_tally">记账</string>
+    <string name="delete_tally">删除</string>
+    <string name="tally_desc">描述</string>
+    <string name="tally_amount">金额</string>
+    <string name="tally_date">日期</string>
+    <string name="save">保存</string>
+    <string name="search">查询</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确认</string>
+    <string name="date_picker_title"></string>
+    <string name="title_activity_navigate">极简记账</string>
+    <string name="title_home">首页</string>
+    <string name="title_analyse">分析</string>
+    <string name="title_history">历史</string>
+    <string name="expend">支出:</string>
+    <string name="income">收入:</string>
+    <string name="balance">结余:</string>
+    <string name="import_export">导入导出</string>
+    <string name="import_csv">导入CSV</string>
+    <string name="export_csv">导出CSV</string>
+    <string name="confirm_import">导入CSV将会覆盖选中月份的数据，确认继续导入吗？</string>
+    <string name="confirm_export">选中月份的数据将被导出到Download目录，确认继续吗？</string>
+    <string name="nodata_to_export">选中月份无数据</string>
+    <string name="not_supported_file">文件格式不支持</string>
+</resources>

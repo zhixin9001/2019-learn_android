@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+        <TableRow android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/share_desc"
+                android:layout_width="165dp"
+                android:layout_marginLeft="10dp"
+                android:text="Tally Desc"></TextView>
+
+            <TextView
+                android:id="@+id/share_amount"
+                android:layout_width="165dp"
+                android:text="Tally Amount"
+                android:textAlignment="textEnd"></TextView>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

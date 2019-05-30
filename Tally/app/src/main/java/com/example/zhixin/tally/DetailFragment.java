@@ -80,7 +80,7 @@ public class DetailFragment extends Fragment {
                         Toast.makeText(getContext(), "Parse date error!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(),false);
+                DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), false);
                 dialog.setTargetFragment(DetailFragment.this, REQUEST_CODE);
                 dialog.show(manager, DIALOG_DATE);
             }
@@ -106,6 +106,7 @@ public class DetailFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         mDateBtn.setText(dateFormat.format(calendar.getTime()));
+        mDateBtn.setTag(calendar);
     }
 
     private void setUI() {
@@ -121,6 +122,7 @@ public class DetailFragment extends Fragment {
                 mAmountEditText.setText(mTally.getAmount().toString());
                 mCategorySpinner.setSelection(mTally.getCategory());
                 mDateBtn.setText(mTally.getDate());
+
             } else {
                 setDateBtnToday();
             }

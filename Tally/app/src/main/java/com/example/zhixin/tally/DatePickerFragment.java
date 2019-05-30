@@ -62,6 +62,13 @@ public class DatePickerFragment extends DialogFragment {
                     daySpinner.setVisibility(View.GONE);
                 }
             }
+            int monthSpinnerId = Resources.getSystem().getIdentifier("month", "id", "android");
+            if (monthSpinnerId != 0) {
+                View monthSpinner = mDatePicker.findViewById(monthSpinnerId);
+                if (monthSpinner != null) {
+                    monthSpinner.setVisibility(View.GONE);
+                }
+            }
         } else {
             v = LayoutInflater.from(getActivity())
                     .inflate(R.layout.dialog_date, null);

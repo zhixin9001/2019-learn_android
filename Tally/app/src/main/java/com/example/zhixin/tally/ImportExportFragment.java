@@ -167,7 +167,7 @@ public class ImportExportFragment extends Fragment {
     private List<Tally> readTallyFromCsv(String path) {
         boolean isSucceed = false;
         List<Tally> tallies = new ArrayList<>();
-        String date = mMonthTextView.getText().toString() + "-01";
+//        String date = mMonthTextView.getText().toString() + "-01";
         File file = new File(path);
         FileInputStream fileInputStream = null;
         Scanner in = null;
@@ -186,7 +186,7 @@ public class ImportExportFragment extends Fragment {
                 tally.setDescription(line[0]);
                 tally.setAmount(Double.parseDouble(line[1]));
                 tally.setCategory(CategoryArray.getIndex(line[2]));
-                tally.setDate(date);
+                tally.setDate(line[3]);
                 tallies.add(tally);
             }
             isSucceed = true;
@@ -216,7 +216,7 @@ public class ImportExportFragment extends Fragment {
             file.createNewFile();
             fileOutputStream = new FileOutputStream(file);
             for (Tally tally : tallies) {
-                String string = tally.getDescription() + "," + tally.getAmount().toString() + "," + CategoryArray.getArray()[tally.getCategory()];
+                String string = tally.getDescription() + "," + tally.getAmount().toString() + "," + CategoryArray.getArray()[tally.getCategory()]+","+tally.getDate();
                 fileOutputStream.write(string.getBytes("GBK"));
                 fileOutputStream.write("\r\n".getBytes());
             }

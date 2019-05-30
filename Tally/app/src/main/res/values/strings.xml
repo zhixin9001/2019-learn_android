@@ -20,8 +20,8 @@
     <string name="import_export">导入导出</string>
     <string name="import_csv">导入CSV</string>
     <string name="export_csv">导出CSV</string>
-    <string name="confirm_import">导入CSV将会覆盖选中月份的数据，确认继续导入吗？</string>
-    <string name="confirm_export">选中月份的数据将被导出到Download目录，确认继续吗？</string>
-    <string name="nodata_to_export">选中月份无数据</string>
+    <string name="confirm_import">导入CSV将会覆盖选中年份的数据，确认继续导入吗？</string>
+    <string name="confirm_export">选中年份的数据将被导出到Download目录，确认继续吗？</string>
+    <string name="nodata_to_export">选中年份无数据</string>
     <string name="not_supported_file">文件格式不支持</string>
 </resources>

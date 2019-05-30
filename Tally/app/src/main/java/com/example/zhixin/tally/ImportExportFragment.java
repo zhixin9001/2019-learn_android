@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.DocumentsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zhixin.tally.DataLayer.CategoryArray;
-import com.example.zhixin.tally.DataLayer.CategoryEnum;
 import com.example.zhixin.tally.DataLayer.Tally;
 import com.example.zhixin.tally.DataLayer.TallyLab;
 
@@ -63,7 +61,7 @@ public class ImportExportFragment extends Fragment {
         mImportBtn = (Button) v.findViewById(R.id.btn_import_csv);
         mExportBtn = (Button) v.findViewById(R.id.btn_export_csv);
 
-        mMonthTextView.setText(CalendarHelper.getDateString("yyyy-MM"));
+        mMonthTextView.setText(CalendarHelper.getDateString("yyyy"));
         mImportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +77,7 @@ public class ImportExportFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager manager = getFragmentManager();
                 try {
-                    Calendar calendar = CalendarHelper.getCalendar(mMonthTextView.getText().toString(), "yyyy-MM");
+                    Calendar calendar = CalendarHelper.getCalendar(mMonthTextView.getText().toString(), "yyyy");
                     DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true);
                     dialog.setTargetFragment(ImportExportFragment.this, DATE_REQUEST_CODE);
                     dialog.show(manager, DIALOG_DATE);
@@ -100,8 +98,8 @@ public class ImportExportFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 try {
-                                    Calendar calendar = CalendarHelper.getCalendar(mMonthTextView.getText().toString(), "yyyy-MM");
-                                    List<Tally> tallies = TallyLab.get(getActivity()).getTallies(TallyLab.getStartOfMonth(calendar), TallyLab.getEndOfMonth(calendar));
+                                    Calendar calendar = CalendarHelper.getCalendar(mMonthTextView.getText().toString(), "yyyy");
+                                    List<Tally> tallies = TallyLab.get(getActivity()).getTallies(TallyLab.getStartOfYear(calendar), TallyLab.getEndOfYear(calendar));
                                     if (tallies != null && tallies.size() > 0) {
                                         writeTallyToCsv(tallies);
                                     } else {
@@ -129,7 +127,7 @@ public class ImportExportFragment extends Fragment {
                 Date result = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(result.getTime());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
                 mMonthTextView.setText(dateFormat.format(calendar.getTime()));
                 break;
             case FILE_REQUEST_CODE:
@@ -147,7 +145,7 @@ public class ImportExportFragment extends Fragment {
                                     boolean isImportSucceed = false;
                                     List<Tally> tallies = readTallyFromCsv(mPathTextView.getText().toString());
                                     if (tallies != null && tallies.size() > 0) {
-                                        isImportSucceed = TallyLab.get(getActivity()).importOneMonthTallies(tallies);
+                                        isImportSucceed = TallyLab.get(getActivity()).importOneYearTallies(tallies);
                                     }
                                     String result = isImportSucceed ? "导入成功: " : "导入失败: ";
                                     mPathTextView.setText(result + mPathTextView.getText().toString());

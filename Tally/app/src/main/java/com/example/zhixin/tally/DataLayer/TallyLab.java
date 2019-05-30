@@ -96,13 +96,13 @@ public class TallyLab {
         return tallies;
     }
 
-    public boolean importOneMonthTallies(List<Tally> tallies) {
+    public boolean importOneYearTallies(List<Tally> tallies) {
         boolean result = false;
         try {
             mDatabase.beginTransaction();
             Calendar calendar = CalendarHelper.getCalendar(tallies.get(0).getDate(), "yyyy-MM-dd");
-            String startDate = getStartOfMonth(calendar);
-            String endDate = getEndOfMonth(calendar);
+            String startDate = getStartOfYear(calendar);
+            String endDate = getEndOfYear(calendar);
             deleteTally(startDate, endDate);
             for (Tally tally : tallies) {
                 this.addTally(tally);
@@ -234,6 +234,20 @@ public class TallyLab {
         Integer currentMonth = calendar.get(Calendar.MONTH);
         calendar.set(currentYear, currentMonth + 1, 1);
         calendar.add(Calendar.DATE, -1);
+        return dateFormat.format(calendar.getTime());
+    }
+
+    public static String getStartOfYear(Calendar calendar) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Integer currentYear = calendar.get(Calendar.YEAR);
+        calendar.set(currentYear, 1, 1);
+        return dateFormat.format(calendar.getTime());
+    }
+
+    public static String getEndOfYear(Calendar calendar) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Integer currentYear = calendar.get(Calendar.YEAR);
+        calendar.set(currentYear, 12, 31);
         return dateFormat.format(calendar.getTime());
     }
 

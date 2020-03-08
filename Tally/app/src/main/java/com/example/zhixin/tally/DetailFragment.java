@@ -80,7 +80,7 @@ public class DetailFragment extends Fragment {
                         Toast.makeText(getContext(), "Parse date error!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), false);
+                DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), false,true);
                 dialog.setTargetFragment(DetailFragment.this, REQUEST_CODE);
                 dialog.show(manager, DIALOG_DATE);
             }

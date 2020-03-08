@@ -84,7 +84,7 @@ public class HistoryFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 try {
                     Calendar calendar = CalendarHelper.getCalendar(mStartMonthTextView.getText().toString(), "yyyy-MM");
-                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true);
+                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true,true);
                     dialog.setTargetFragment(HistoryFragment.this, START_REQUEST_CODE);
                     dialog.show(manager, DIALOG_DATE);
                 } catch (ParseException pe) {
@@ -99,7 +99,7 @@ public class HistoryFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 try {
                     Calendar calendar = CalendarHelper.getCalendar(mEndMonthTextView.getText().toString(), "yyyy-MM");
-                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true);
+                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true,true);
                     dialog.setTargetFragment(HistoryFragment.this, END_REQUEST_CODE);
                     dialog.show(manager, DIALOG_DATE);
                 } catch (ParseException pe) {

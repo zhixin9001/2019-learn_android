@@ -78,7 +78,7 @@ public class ImportExportFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 try {
                     Calendar calendar = CalendarHelper.getCalendar(mMonthTextView.getText().toString(), "yyyy");
-                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true);
+                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar.getTime(), true,false);
                     dialog.setTargetFragment(ImportExportFragment.this, DATE_REQUEST_CODE);
                     dialog.show(manager, DIALOG_DATE);
                 } catch (ParseException pe) {

@@ -74,7 +74,7 @@ public class AnalyseFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 try {
                     Calendar calendar1 = CalendarHelper.getCalendar(mSearchMonth.getText().toString(), "yyyy-MM");
-                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar1.getTime(), true);
+                    DatePickerFragment dialog = DatePickerFragment.newInstance(calendar1.getTime(), true,true);
                     dialog.setTargetFragment(AnalyseFragment.this, REQUEST_CODE);
                     dialog.show(manager, DIALOG_DATE);
                 } catch (ParseException pe) {

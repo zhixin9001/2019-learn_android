@@ -28,11 +28,13 @@ public class DatePickerFragment extends DialogFragment {
             "com.zhixin.android.tally.date";
     private DatePicker mDatePicker;
     private static boolean isSpinnerLayout;
+    private static boolean isShowMonth;
 
-    public static DatePickerFragment newInstance(Date date, boolean spinnerLayout) {
+    public static DatePickerFragment newInstance(Date date, boolean spinnerLayout,boolean showMonth) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_DATE, date);
         isSpinnerLayout = spinnerLayout;
+        isShowMonth=showMonth;
 
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setArguments(args);
@@ -62,11 +64,13 @@ public class DatePickerFragment extends DialogFragment {
                     daySpinner.setVisibility(View.GONE);
                 }
             }
-            int monthSpinnerId = Resources.getSystem().getIdentifier("month", "id", "android");
-            if (monthSpinnerId != 0) {
-                View monthSpinner = mDatePicker.findViewById(monthSpinnerId);
-                if (monthSpinner != null) {
-                    monthSpinner.setVisibility(View.GONE);
+            if(!isShowMonth) {
+                int monthSpinnerId = Resources.getSystem().getIdentifier("month", "id", "android");
+                if (monthSpinnerId != 0) {
+                    View monthSpinner = mDatePicker.findViewById(monthSpinnerId);
+                    if (monthSpinner != null) {
+                        monthSpinner.setVisibility(View.GONE);
+                    }
                 }
             }
         } else {

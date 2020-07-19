@@ -1,0 +1,12 @@
+v1.3 
+  2020/7/19
+    修复导入数据失败，
+    可能是系统升级导致选择路径出现变化，在FileHelper中修改了，id转换long失败，判断如果是raw开头就不转换了。
+                else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                if (id.startsWith("raw:")) {
+                    return id.replaceFirst("raw:", "");
+                }
+    如果导出失败，检查是否有权限
+    
